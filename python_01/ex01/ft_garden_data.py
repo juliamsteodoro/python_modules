@@ -1,28 +1,18 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    ft_garden_data.py                                  :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jumoreir <jumoreir@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/09/14 10:58:12 by jumoreir          #+#    #+#              #
-#    Updated: 2026/09/14 11:12:18 by jumoreir         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 class Plant:
-	def __init__(self, name, height, age):
-		self.name = name
-		self.height = height
-		self.age = age
-	def show(self):
-		print(f"{self.name}: {self.height}cm, {self.age} days old")
+    def __init__(self, name: str, height: float, age: int):
+        self.name = name
+        self.height = height
+        self.age = age
+
+    def show(self) -> None:
+        print(f"{self.name}: {self.height}cm, {self.age} days old")
+
 
 if __name__ == "__main__":
-	print("=== Garden Plant Registry ===")
-	rose = Plant("Rose", 25, 30)
-	sunflower = Plant("Sunflower", 80, 45)
-	cactus = Plant("Cactus", 15, 120)
-	rose.show()
-	sunflower.show()
-	cactus.show()
+    print("=== Garden Plant Registry ===")
+    plant1 = Plant("Rose", 25, 30)
+    plant2 = Plant("Sunflower", 80, 45)
+    plant3 = Plant("Cactus", 15, 120)
+    plant1.show()
+    plant2.show()
+    plant3.show()
