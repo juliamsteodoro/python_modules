@@ -1,9 +1,11 @@
-class Plant:
+#!/usr/bin/env python3
 
+class Plant:
     def __init__(self, name: str, height: float, age: int) -> None:
         self._name: str = name
         self._height: float = 0.0
         self._age: int = 0
+
         if height < 0:
             print(f"{self._name}: Error, height can't be negative")
         else:
@@ -49,7 +51,6 @@ class Plant:
 
 
 class Flower(Plant):
-
     def __init__(
         self,
         name: str,
@@ -74,7 +75,6 @@ class Flower(Plant):
 
 
 class Tree(Plant):
-
     def __init__(
         self,
         name: str,
@@ -98,7 +98,6 @@ class Tree(Plant):
 
 
 class Vegetable(Plant):
-
     def __init__(
         self,
         name: str,
@@ -110,11 +109,6 @@ class Vegetable(Plant):
         self.harvest_season = harvest_season
         self.nutritional_value: int = 0
 
-    def show(self) -> None:
-        super().show()
-        print(f" Harvest season: {self.harvest_season}")
-        print(f" Nutritional value: {self.nutritional_value}")
-
     def grow(self, amount: float) -> None:
         super().grow(amount)
         self.nutritional_value += 1
@@ -123,8 +117,13 @@ class Vegetable(Plant):
         super().age(days)
         self.nutritional_value += 1
 
+    def show(self) -> None:
+        super().show()
+        print(f" Harvest season: {self.harvest_season}")
+        print(f" Nutritional value: {self.nutritional_value}")
 
-if __name__ == "__main__":
+
+def main() -> None:
     print("=== Garden Plant Types ===")
     print("=== Flower")
     rose = Flower("Rose", 15.0, 10, "red")
@@ -149,3 +148,7 @@ if __name__ == "__main__":
         tomato.grow(4.2)
         tomato.age(2)
     tomato.show()
+
+
+if __name__ == "__main__":
+    main()

@@ -225,5 +225,6 @@ def main() -> None:
     anonymous.show()
     display_plant_analytics(anonymous)
 
+
 if __name__ == "__main__":
-	main()
+    main()

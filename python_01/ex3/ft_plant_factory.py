@@ -24,5 +24,6 @@ def main() -> None:
         print("Created: ", end="")
         plant.show()
 
+
 if __name__ == "__main__":
     main()

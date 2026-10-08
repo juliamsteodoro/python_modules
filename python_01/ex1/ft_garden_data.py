@@ -19,5 +19,6 @@ def main() -> None:
     plant2.show()
     plant3.show()
 
+
 if __name__ == "__main__":
     main()

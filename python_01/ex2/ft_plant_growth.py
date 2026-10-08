@@ -29,5 +29,6 @@ def main() -> None:
     growth_this_week: float = round(rose.height - inital_height, 1)
     print(f"Growth this week: {growth_this_week}cm")
 
+
 if __name__ == "__main__":
     main()
