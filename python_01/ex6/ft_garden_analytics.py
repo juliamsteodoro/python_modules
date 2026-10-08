@@ -1,5 +1,6 @@
-class Plant:
+#!/usr/bin/env python3
 
+class Plant:
     class Stats:
 
         def __init__(self) -> None:
@@ -86,7 +87,6 @@ class Plant:
 
 
 class Flower(Plant):
-
     def __init__(
         self,
         name: str,
@@ -111,7 +111,6 @@ class Flower(Plant):
 
 
 class Seed(Flower):
-
     def __init__(
         self,
         name: str,
@@ -132,7 +131,6 @@ class Seed(Flower):
 
 
 class Tree(Plant):
-
     class Stats(Plant.Stats):
 
         def __init__(self) -> None:
@@ -177,7 +175,7 @@ def display_plant_analytics(plant: Plant) -> None:
     plant.stats.display()
 
 
-if __name__ == "__main__":
+def main() -> None:
     print("=== Garden statistics ===")
 
     print("=== Check year-old")
@@ -226,3 +224,6 @@ if __name__ == "__main__":
     anonymous = Plant.create_anonymous()
     anonymous.show()
     display_plant_analytics(anonymous)
+
+if __name__ == "__main__":
+	main()
