@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 class Plant:
     def __init__(self, name: str, height: float, age: int) -> None:
         self.name = name
@@ -8,7 +10,7 @@ class Plant:
         print(f"{self.name}: {self.height}cm, {self.age} days old")
 
 
-if __name__ == "__main__":
+def main() -> None:
     print("=== Garden Plant Registry ===")
     plant1 = Plant("Rose", 25, 30)
     plant2 = Plant("Sunflower", 80, 45)
@@ -16,3 +18,6 @@ if __name__ == "__main__":
     plant1.show()
     plant2.show()
     plant3.show()
+
+if __name__ == "__main__":
+    main()

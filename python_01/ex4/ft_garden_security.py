@@ -41,7 +41,7 @@ class Plant:
         )
 
 
-if __name__ == "__main__":
+def main() -> None:
     print("=== Garden Security System ===")
     rose = Plant("Rose", 15.0, 10)
     print("Plant created: ", end="")
@@ -58,3 +58,7 @@ if __name__ == "__main__":
 
     print("Current state: ", end="")
     rose.show()
+
+
+if __name__ == "__main__":
+    main()

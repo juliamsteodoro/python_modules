@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 class Plant:
     def __init__(self, name: str, height: float, age: int) -> None:
         self.name = name
@@ -14,7 +16,7 @@ class Plant:
         self.days += 1
 
 
-if __name__ == "__main__":
+def main() -> None:
     print("=== Garden Plant Growth ===")
     rose = Plant("Rose", 25, 30)
     rose.show()
@@ -26,3 +28,6 @@ if __name__ == "__main__":
         rose.show()
     growth_this_week: float = round(rose.height - inital_height, 1)
     print(f"Growth this week: {growth_this_week}cm")
+
+if __name__ == "__main__":
+    main()
