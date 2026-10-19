@@ -1,5 +1,5 @@
 import sys
-import typing
+
 
 def main() -> None:
     if len(sys.argv) != 2:
@@ -22,7 +22,7 @@ def main() -> None:
             if char == "\n":
                 new_file += "#\n"
             else:
-               new_file += char
+                new_file += char
         if len(content) > 0 and content[-1] != "\n":
             new_file += "#"
         print(new_file, end="\n")
@@ -37,6 +37,7 @@ def main() -> None:
             print("Not saving data.")
     except OSError as e:
         print(f"Error opening file '{sys.argv[1]}': {e}")
+
 
 if __name__ == "__main__":
     main()

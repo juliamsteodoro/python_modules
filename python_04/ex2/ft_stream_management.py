@@ -1,5 +1,6 @@
 import sys
 
+
 def main() -> None:
     if len(sys.argv) != 2:
         print("Usage: ft_stream_management.py <file>")
@@ -38,12 +39,16 @@ def main() -> None:
                 out_file.close()
                 print(f"Data saved in file '{new_file_name}'.")
             except OSError as e:
-                sys.stderr.write(f"[STDERR] Error opening file '{new_file_name}': {e}\n")
+                sys.stderr.write(
+                    f"[STDERR] Error opening file "
+                    f"'{new_file_name}': {e}\n"
+                )
                 print("Data not saved.")
         else:
             print("Not saving data.")
     except OSError as e:
         sys.stderr.write(f"[STDERR] Error opening file '{sys.argv[1]}': {e}\n")
+
 
 if __name__ == "__main__":
     main()
