@@ -1,5 +1,6 @@
 import alchemy
 
+
 def main() -> None:
     print("=== Alembic 1 ===")
     print("Accessing the alchemy module using 'import alchemy'")

@@ -22,11 +22,12 @@ def main() -> None:
 
     if has_numpy and has_pandas:
         print(
-        "pip vs Poetry: requirements.txt declares what to install; "
-        "pip resolves it at install time. pyproject.toml declares the same "
-        "constraints, and Poetry pins the resolved versions in poetry.lock "
-        "so every install is identical."
-    )
+            "pip vs Poetry: requirements.txt declares what to install; "
+            "pip resolves it at install time. "
+            "pyproject.toml declares the same constraints, "
+            "and Poetry pins the resolved versions in poetry.lock "
+            "so every install is identical."
+        )
         print("All reagents present and accounted for.")
     else:
         print("To install missing reagents:")

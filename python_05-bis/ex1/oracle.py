@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 
+
 def check_security() -> None:
     print("Configuration security check:")
     print("  [OK] No hardcoded secrets detected")
@@ -19,6 +20,7 @@ def check_security() -> None:
 
     print("  [OK] Production overrides available\n")
 
+
 def main() -> None:
     load_dotenv()
     matrix_mode = os.getenv("MATRIX_MODE", "development")
@@ -29,7 +31,6 @@ def main() -> None:
 
     print("ORACLE STATUS: Consulting the configuration...")
     print("Configuration loaded:")
-
 
     if matrix_mode.lower() == "production":
         print("  Mode: production (SECURE)")
@@ -58,4 +59,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-    

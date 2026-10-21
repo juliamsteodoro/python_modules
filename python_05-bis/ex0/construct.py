@@ -2,6 +2,7 @@ import os
 import site
 import sys
 
+
 def main() -> None:
     if sys.prefix != sys.base_prefix:
         venv_name = os.path.basename(sys.prefix)
@@ -11,8 +12,10 @@ def main() -> None:
         print(f"Current Python: {sys.executable}")
         print(f"Virtual Environment: {venv_name}")
         print(f"Environment Path: {sys.prefix}\n")
-        print("SUCCESS: You are working in an isolated environment! "
-              "Safe to install reagents without affecting the global system.\n")
+        print(
+            "SUCCESS: You are working in an isolated environment! "
+            "Safe to install reagents without affecting the global system.\n"
+        )
         print("Reagent installation path:")
         print(site_pkg)
     else:
