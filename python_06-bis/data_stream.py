@@ -131,7 +131,8 @@ class DataStream:
                     break
             if not handled:
                 print(
-                    f"DataStream error - Can't process element in stream: {element}"
+                    "DataStream error - Can't process element in stream: "
+                    f"{element}"
                 )
 
     def print_processors_stats(self) -> None:
@@ -142,7 +143,7 @@ class DataStream:
 
         for proc in self._processors:
             name = proc.__class__.__name__
-            # Formata o nome adicionando espaço antes das maiúsculas para exibir legível
+            # Separa as palavras do nome da classe.
             formatted_name = " ".join(
                 "".join(
                     [f" {c}" if c.isupper() else c for c in name]
@@ -158,7 +159,7 @@ class DataStream:
 
 if __name__ == "__main__":
     print("=== Code Nexus - Data Stream ===")
-    
+
     print("Initialize Data Stream...")
     ds = DataStream()
     ds.print_processors_stats()
@@ -171,7 +172,8 @@ if __name__ == "__main__":
         "Hello world",
         [3.14, -1, 2.71],
         [
-            {"log_level": "WARNING", "log_message": "Telnet access! Use ssh instead"},
+            {"log_level": "WARNING",
+             "log_message": "Telnet access! Use ssh instead"},
             {"log_level": "INFO", "log_message": "User wil is connected"}
         ],
         42,
@@ -193,7 +195,7 @@ if __name__ == "__main__":
     ds.process_stream(batch)
     ds.print_processors_stats()
 
-    print("\nConsume some elements from the data processors: Numeric 3, Text 2, Log 1")
+    print("\nConsume elements: Numeric 3, Text 2, Log 1")
     for _ in range(3):
         num_proc.output()
     for _ in range(2):

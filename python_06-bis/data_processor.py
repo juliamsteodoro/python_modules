@@ -115,11 +115,11 @@ if __name__ == "__main__":
     print("Trying to validate input 'Hello':", num_proc.validate("Hello"))
 
     try:
-        num_proc.ingest("foo")  # type: ignore
+        num_proc.ingest("foo")
     except ValueError as e:
         print("Got exception:", e)
 
-    num_proc.ingest([1, 2, 5-7])
+    num_proc.ingest([1, 2, 5 - 7])
     print("Extracting 3 values...")
     for _ in range(3):
         rank, val = num_proc.output()
@@ -128,6 +128,7 @@ if __name__ == "__main__":
     print("\nTesting Text Processor...")
     text_proc = TextProcessor()
     print("Trying to validate input '42':", text_proc.validate(42))
+    print("Valid text:", text_proc.validate(["Hello", "Nexus", "World"]))
     text_proc.ingest(["Hello", "Nexus", "World"])
     rank, val = text_proc.output()
     print(f"Text value {rank}: {val}")
@@ -135,6 +136,7 @@ if __name__ == "__main__":
     print("\nTesting Log Processor...")
     log_proc = LogProcessor()
     print("Trying to validate input 'Hello':", log_proc.validate("Hello"))
+    print("Valid log:", log_proc.validate({"log_level": "NOTICE"}))
     log_proc.ingest([
         {"log_level": "NOTICE", "log_message": "Connection to server"},
         {"log_level": "ERROR", "log_message": "Unauthorized access!!"}

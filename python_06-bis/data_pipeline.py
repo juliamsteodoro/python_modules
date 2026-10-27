@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Any, Protocol
 
+
 class DataProcessor(ABC):
     def __init__(self) -> None:
         self._storage: list[str] = []
@@ -114,7 +115,7 @@ class CSVExportPlugin:
     def process_output(self, data: list[tuple[int, str]]) -> None:
         if not data:
             return
-        values = [val for _, val in data]
+        values = ['"' + val.replace('"', '""') + '"' for _, val in data]
         print("CSV Output:", ",".join(values))
 
 
@@ -122,8 +123,21 @@ class JSONExportPlugin:
     def process_output(self, data: list[tuple[int, str]]) -> None:
         if not data:
             return
-        # Formata pares key-value como "item_X": "valor"
-        json_entries = [f'"item_{rank}": "{val}"' for rank, val in data]
+
+        def quote(value: str) -> str:
+            escaped = ""
+            for char in value:
+                if char in ('"', "\\"):
+                    escaped += "\\" + char
+                elif ord(char) < 32:
+                    escaped += f"\\u{ord(char):04x}"
+                else:
+                    escaped += char
+            return '"' + escaped + '"'
+
+        json_entries = [
+            f'"item_{rank}": {quote(val)}' for rank, val in data
+        ]
         json_str = "{" + ", ".join(json_entries) + "}"
         print("JSON Output:", json_str)
 
@@ -152,7 +166,8 @@ class DataStream:
                     break
             if not handled:
                 print(
-                    f"DataStream error - Can't process element in stream: {element}"
+                    "DataStream error - Can't process element in stream: "
+                    f"{element}"
                 )
 
     def output_pipeline(self, nb: int, plugin: ExportPlugin) -> None:
@@ -205,7 +220,8 @@ if __name__ == "__main__":
         "Hello world",
         [3.14, -1, 2.71],
         [
-            {"log_level": "WARNING", "log_message": "Telnet access! Use ssh instead"},
+            {"log_level": "WARNING",
+             "log_message": "Telnet access! Use ssh instead"},
             {"log_level": "INFO", "log_message": "User wil is connected"}
         ],
         42,
@@ -226,9 +242,10 @@ if __name__ == "__main__":
         ["I love AI", "LLMs are wonderful", "Stay healthy"],
         [
             {"log_level": "ERROR", "log_message": "500 server crash"},
-            {"log_level": "NOTICE", "log_message": "Certificate expires in 10 days"}
+            {"log_level": "NOTICE",
+             "log_message": "Certificate expires in 10 days"}
         ],
-        [9-14],
+        [9 - 14],
         "World hello"
     ]
 

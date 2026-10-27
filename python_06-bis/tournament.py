@@ -1,4 +1,4 @@
-from ex3 import FlameFactory, TransformCreatureFactory
+from ex3 import CreatureFactory, FlameFactory, TransformCreatureFactory
 from ex4 import (
     AggressiveStrategy,
     BattleStrategy,
@@ -7,34 +7,44 @@ from ex4 import (
 )
 
 
-def run_match(
-    creature_name: str,
-    creature_obj: object,
-    strategy: BattleStrategy
+def battle(
+    opponents: list[tuple[CreatureFactory, BattleStrategy]],
 ) -> None:
-    print(f"Applying {strategy.name} to {creature_name}:")
-    try:
-        result = strategy.execute(creature_obj)  # type: ignore
-        print(result)
-    except IncompatibleStrategyError as e:
-        print(f"Strategy Error: {e}")
-    print()
+    print("*** Tournament ***")
+    print(f"{len(opponents)} opponents involved")
+    participants = [
+        (factory.create_base(), strategy) for factory, strategy in opponents
+    ]
+    for index, (first, first_strategy) in enumerate(participants):
+        for second, second_strategy in participants[index + 1:]:
+            print("\n* Battle *")
+            print(first.describe())
+            print(" vs.")
+            print(second.describe())
+            print(" now fight!")
+            try:
+                for creature, strategy in (
+                    (first, first_strategy), (second, second_strategy)
+                ):
+                    if not strategy.is_valid(creature):
+                        raise IncompatibleStrategyError(
+                            f"Invalid Creature '{creature.name}' "
+                            f"for {strategy.name}"
+                        )
+                    print(strategy.act(creature))
+            except IncompatibleStrategyError as error:
+                print(f"Battle error, aborting tournament: {error}")
+                return
 
 
 if __name__ == "__main__":
-    print("=== Code Nexus - Tournament ===\n")
-
     flame_factory = FlameFactory()
     transform_factory = TransformCreatureFactory()
+    normal = NormalStrategy()
+    aggressive = AggressiveStrategy()
 
-    flameling = flame_factory.create_base()
-    shiftling = transform_factory.create_base()
+    print("Tournament 0 (basic)")
+    battle([(flame_factory, normal), (transform_factory, aggressive)])
 
-    normal_strat = NormalStrategy()
-    aggressive_strat = AggressiveStrategy()
-
-    run_match(flameling.name, flameling, normal_strat)
-
-    run_match(flameling.name, flameling, aggressive_strat)
-
-    run_match(shiftling.name, shiftling, aggressive_strat)
+    print("\nTournament 1 (error)")
+    battle([(transform_factory, aggressive), (flame_factory, aggressive)])
